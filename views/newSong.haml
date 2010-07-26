@@ -1,0 +1,12 @@
+%h3 new tape
+%form{:action => '/new/song', :method => 'post', :class => 'form1'}
+	%p
+		%label{:for => 'title'}
+			song title
+		%input{:type => 'text', :name => 'title'}
+	%p
+		%label{:for => 'artist'}
+			artist
+		%input{:type => 'text', :name => 'artist'}
+	%p
+		%input{:type => 'submit', :value => 'create'}

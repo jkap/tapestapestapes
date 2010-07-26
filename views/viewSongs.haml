@@ -1,0 +1,9 @@
+%ul#songList
+	- i = 0
+	- @songs.each do |song|
+		- songInfo = song.title + ' by ' + song.artist
+		- if i % 2 == 0
+			%li.song1=songInfo
+		- else
+			%li.song2=songInfo
+		- i += 1
