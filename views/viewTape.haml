@@ -1,0 +1,42 @@
+!!!
+%html
+  %head
+    %title= @title
+    %link{:href => "/style.css", :rel => "stylesheet", :type => "text/css"}
+  %body#body
+    #container
+      #header
+        TAPES
+        %br
+        TAPES
+        %br
+        TAPES
+      #controlsNShit
+        %a.controls{:href => "#"} prev
+        |
+        %a.controls{:href => "#"} play/pause
+        |
+        %a.controls{:href => "#"} next
+      #nowPlaying
+        now playing:
+        %span#actualInfo
+        %a.songInfo{:href => "#"} Get Innocuous! (Soulwax Remix)
+        by
+        %a.songInfo{:href => "#"} LCD Soundsystem
+      #tapeInfo
+        %span.tapeName= @tapeTitle
+        by
+        %a.tapeMaker{:href => "/view/user/"+@tapeMaker}= @tapeMaker
+        %ul#songList
+          %li.song1 lol it's a song
+          %li.song2 lol it's another song
+          %li.song1 song3
+          %li.song2 song4
+          %li.song1 song5
+          %li.song2 song6
+          %li.song1 song7
+          %li.song2 song8
+          %li.song1 song9
+          %li.song2 song10
+          %li.song1 song11
+          %li.song2 song12

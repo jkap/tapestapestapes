@@ -1,0 +1,123 @@
+#container {
+	width: 70%;
+	margin-top: 2%;
+	background-color: #DDE1EA;
+	padding: 1%;
+	margin-right: 15%;
+	margin-left: 15%;
+	min-height: 350px;
+	float: left;
+}
+
+div#header {
+	font: 5em Helvetica, Arial, Geneva, sans-serif;
+	width: 50%;
+	float: left;
+	background-color: #DDE1EA;
+}
+
+div#tapeInfo {
+	width: 50%;
+	margin-left: 50%;
+	background-color: #DDE1EA;
+	font-family: Helvetica, Arial, Geneva, sans-serif;
+}
+
+ul#songList {
+	list-style-type: none;
+	padding: 0;
+}
+
+li.song1 {
+	font-size: 12pt;
+	padding: 5pt;
+	background-color: #038DBE;
+	color: #FAFAFD;
+}
+
+li:hover.song1 {
+	font-size: 12pt;
+	padding: 5pt;
+	background-color: #A5E7FD;
+	color: #444;
+}
+
+#controlsNShit {
+	font-family: Helvetica, Arial, Geneva, sans-serif;
+	text-align: left;
+	padding: .5%;
+	font-size: 11pt;
+	width: 50%;
+	float: left;
+}
+
+#nowPlaying {
+	font-family: Helvetica, Arial, Geneva, sans-serif;
+	text-align: left;
+	padding: .5%;
+	font-size: 11pt;
+	width: 49%;
+	float: left;
+}
+
+li.song2 {
+	font-size: 12pt;
+	padding: 5pt;
+	background-color: #5AB7F2;
+	color: #444;
+}
+
+li:hover.song2 {
+	font-size: 12pt;
+	padding: 5pt;
+	background-color: #A5E7FD;
+	color: #444;
+}
+
+body#body {
+	background-color: #FAFAFD;
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica, Arial, Geneva, sans-serif;
+}
+
+.tapeName {
+	font-weight: bold;
+}
+
+a.tapeMaker {
+	font-weight: bold;
+	text-decoration: none;
+	color: #444;
+}
+
+a:hover.tapeMaker {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #444;
+}
+
+a:visited.tapeMaker {
+	font-weight: bold;
+	text-decoration: underline;
+	color: #444;
+}
+
+#nowPlaying a.songInfo {
+	text-decoration:none;
+	color: #444;
+	font-weight: bold;
+}
+
+#nowPlaying a:hover.songInfo {
+	text-decoration: underline;
+}
+
+a.controls {
+	text-decoration: none;
+	color: #444;
+}
+
+a:hover.controls {
+	text-decoration: underline;
+}

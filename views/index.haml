@@ -1,0 +1,8 @@
+%ul#songList
+	- i = 0
+	- @tapes.each do |tape|
+		- if i % 2 == 0
+			%li.song1=tape.title
+		- else
+			%li.song2=tape.title
+		- i += 1
