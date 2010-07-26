@@ -1,3 +1,5 @@
+/* @override http://localhost:4567/style.css */
+
 #container {
 	width: 70%;
 	margin-top: 2%;
@@ -5,7 +7,6 @@
 	padding: 1%;
 	margin-right: 15%;
 	margin-left: 15%;
-	min-height: 350px;
 	float: left;
 }
 
@@ -121,3 +122,21 @@ a.controls {
 a:hover.controls {
 	text-decoration: underline;
 }
+
+#footer {
+	margin-top: 30px;
+	width: 100%;
+	float: left;
+	font-size: 12px;
+	margin-left: 20px;
+}
+
+a.general {
+	color:  #444;
+	text-decoration: none;
+}
+
+a.general:hover {
+	text-decoration: underline;
+}
+

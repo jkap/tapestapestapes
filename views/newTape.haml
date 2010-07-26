@@ -1,0 +1,8 @@
+%h3 new tape
+%form{:action => '/new/tape', :method => 'post', :class => 'form1'}
+	%p
+		%label{:for => 'title'}
+			tape title
+		%input{:type => 'text', :name => 'title', :hint => 'Tape title'}
+	%p
+		%input{:type => 'submit', :value => 'create'}

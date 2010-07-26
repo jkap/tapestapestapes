@@ -1,7 +1,7 @@
 !!!
 %html
 	%head
-		%title TapesTapesTapes
+		%title= @pageTitle
 		%link{:href => "/style.css", :rel => "stylesheet", :type => "text/css"}
 	%body#body
 		#container
@@ -13,3 +13,9 @@
 				TAPES
 			#tapeInfo
 				= yield
+			#footer
+				&copy; 2010 Josh Kaplan
+				|
+				%a{:href => '#', :class => 'general'} About
+				|
+				%a{:href => '#', :class => 'general'} Contact
