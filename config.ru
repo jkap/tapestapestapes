@@ -6,4 +6,4 @@ set :env, :development
 
 require 'ttt'
 
-run Sinatra.application
+run Sinatra::Application

@@ -28,17 +28,21 @@ function Player(tapeId, playerName) {
 				// load and play first song
 				this.songLoaded = 0;
 				niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+				document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
+				this.isPlaying = true;
 				return 'loaded';
 			// it's paused
 			} else {
 				// unpause
 				niftyplayer(this.playerName).play();
+				this.isPlaying = true;
 				return 'play';
 			}
 		// it's playing
 		} else {
 			// pause
 			niftyplayer(this.playerName).pause();
+			this.isPlaying = false;
 			return 'pause';
 		}
 		return 'nothing happened';
@@ -50,6 +54,7 @@ function Player(tapeId, playerName) {
 		}
 		this.songLoaded++;
 		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+		document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
 	}
 	
 	this.prevSong = function() {
@@ -58,6 +63,7 @@ function Player(tapeId, playerName) {
 		}
 		this.songLoaded--;
 		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+		document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
 	}
 	
 	this.finished = function() {
@@ -71,6 +77,7 @@ function Player(tapeId, playerName) {
 	this.playSong = function(index) {
 		this.songLoaded = index;
 		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+		document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
 		return 'loaded';
 	}
 	

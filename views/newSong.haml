@@ -1,5 +1,5 @@
 %h3 new tape
-%form{:action => '/new/song', :method => 'post', :class => 'form1'}
+%form{:action => '/new/song', :method => 'post', :class => 'form1', :enctype=>"multipart/form-data"}
 	%p
 		%label{:for => 'title'}
 			song title
@@ -8,5 +8,9 @@
 		%label{:for => 'artist'}
 			artist
 		%input{:type => 'text', :name => 'artist'}
+	%p
+		%label{:for => 'upload_data'}
+			file to upload
+		%input{:type => 'file', :name => 'upload_data', :id => 'upload_data'}
 	%p
 		%input{:type => 'submit', :value => 'create'}

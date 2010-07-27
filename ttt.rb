@@ -7,6 +7,7 @@ require 'dm-migrations'
 require 'logger'
 require 'haml'
 require 'dm-serializer/to_json'
+require 'fileutils'
 
 ## Configuration
 configure :development do
@@ -63,6 +64,7 @@ DataMapper.auto_upgrade!
 ## Controller Actions
 
 titlePrefix = 'tapestapestapes'
+musicDirectory = FileUtils.pwd() + '/public/static/music'
 
 # index
 get '/' do
@@ -86,7 +88,8 @@ end
 
 # create song
 post '/new/song' do
-	song=Song.create(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
+	song=Song.new(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
+	song.save
 	redirect '/'
 end
 
