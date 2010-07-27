@@ -1,4 +1,7 @@
-%h3= @songInfo
+%h3
+	=@song.title
+	by
+	%a{:href => '/view/artist/' + @song.artist, :class => 'general'}=@song.artist
 Member of tapes:
 %ul#songList
 	- i = 0

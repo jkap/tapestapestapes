@@ -1,11 +1,32 @@
-%h3= @tape.title
-Has songs:
+%script{:src => "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js", :type => "text/javascript"}
+%script{:type => 'text/javascript', :src => '/niftyplayer.js'}
+%script{:src => "/playercontrols.js", :type => "text/javascript"}
+%script{:type => 'text/javascript'}
+	play = new Image(); 
+	play.src = '/play_16.png';
+	pause = new Image(); 
+	pause.src = '/pause_16.png'
+	var player = new Player(1,'niftyPlayer1');
+%h3
+	=@tape.title
+	created by
+	%a{:href => '/user/' + @tape.user.uname, :class => 'general'}=@tape.user.uname
+%a{:href => '/add/song', :class => 'general small'} Add a song
 %ul#songList
 	- i = 0
 	- @songs.each do |song|
 		- songInfo = song.title + ' by ' + song.artist
 		- if i % 2 == 0
-			%li.song1{:onclick => 'document.location="/view/song/' + song.id.to_s() + '"'}=songInfo
+			%li.song1{:onclick => 'player.playSong('+  i.to_s() +')'}
+				%span
+					=song.title
+					by
+					%a{:href => '/view/artist/' + song.artist, :class => 'songArtist'}=song.artist
 		- else
-			%li.song2{:onclick => 'document.location="/view/song/' + song.id.to_s() + '"'}=songInfo
+			%li.song2{:onclick => 'player.playSong('+  i.to_s() +')'}
+				%span
+					=song.title
+					by
+					%a{:href => '/view/artist/' + song.artist, :class => 'songArtist'}=song.artist
 		- i += 1
+%embed{:height => "0", :name => "niftyPlayer1", :pluginspage => "http://www.macromedia.com/go/getflashplayer", :quality => "high", :src => "/niftyplayer.swf", :type => "application/x-shockwave-flash", :width => "0"}

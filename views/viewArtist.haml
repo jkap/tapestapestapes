@@ -1,0 +1,11 @@
+%h3
+	=@songs.first.artist
+%ul#songList
+	- i = 0
+	- @songs.each do |song|
+		- songInfo = song.title
+		- if i % 2 == 0
+			%li.song1{:onclick => 'document.location="/view/song/' + song.id.to_s() + '"'}=songInfo
+		- else
+			%li.song2{:onclick => 'document.location="/view/song/' + song.id.to_s() + '"'}=songInfo
+		- i += 1

@@ -1,0 +1,9 @@
+%h3= @user.uname
+%ul#songList
+	- i = 0
+	- @user.tapes.each do |tape|
+		- if i % 2 == 0
+			%li.song1{:onclick => 'document.location="/view/tape/' + tape.id.to_s() + '"'}=tape.title
+		- else
+			%li.song2{:onclick => 'document.location="/view/tape/' + tape.id.to_s() + '"'}=tape.title
+		- i += 1

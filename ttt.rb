@@ -6,6 +6,7 @@ require 'dm-validations'
 require 'dm-migrations'
 require 'logger'
 require 'haml'
+require 'dm-serializer/to_json'
 
 ## Configuration
 configure :development do
@@ -27,6 +28,7 @@ class Tape
 	validates_presence_of :title
 	
 	has n, :songs, :through => Resource
+	belongs_to :user
 end
 
 class Song
@@ -40,6 +42,19 @@ class Song
 	validates_presence_of :artist
 	
 	has n, :tapes, :through => Resource
+end
+
+class User
+	include DataMapper::Resource
+	property :id,					Serial
+	property :email, 			String, :length => (5..40), :unique => true, :format => :email_address
+	property :uname,			String, :unique => true
+	property :created_at,	DateTime
+	
+	has n, :tapes
+	
+	validates_presence_of :email
+	validates_presence_of :uname
 end
 
 DataMapper.finalize
@@ -58,7 +73,9 @@ end
 
 # create tape
 post '/new/tape' do
-	tape=Tape.create(:title=>params[:title],:created_at=>Time.now)
+	tape=Tape.new(:title=>params[:title],:created_at=>Time.now)
+	tape.user=User.first(:uname => params[:uname])
+	tape.save
 	redirect '/'
 end
 
@@ -101,6 +118,11 @@ get '/view/tape/:id' do
 	haml :viewTape
 end
 
+get '/view/tape/:id/json' do
+	@tape=Tape.get(params[:id])
+	@tape.songs.to_json
+end
+
 # add song to tape
 post '/add/song' do
 	song=Song.get(params[:songID])
@@ -108,4 +130,29 @@ post '/add/song' do
 	tape.songs << song
 	tape.save
 	redirect '/view/tape/' + params[:tapeID]
+end
+
+get '/add/song' do
+	@pageTitle = titlePrefix + ' - add song to tape'
+	haml :addSong
+end
+
+# create user
+post '/new/user' do
+	user=User.create(:email=>params[:email], :uname=>params[:uname],:created_at=>Time.now)
+	redirect '/'
+end
+
+# view users
+get '/user/:uname' do
+	@user=User.first(:uname => params[:uname])
+	@pageTitle = titlePrefix + ' - ' + @user.uname + '\'s profile'
+	haml :viewUser
+end
+
+# view artist
+get '/view/artist/:artistName' do
+	@songs=Song.all(:artist => params[:artistName])
+	@pageTitle = titlePrefix + ' - ' + params[:artistName]
+	haml :viewArtist
 end

@@ -29,18 +29,29 @@ ul#songList {
 	padding: 0;
 }
 
-li.song1 {
+.song1 {
 	font-size: 12pt;
 	padding: 5pt;
 	background-color: #038DBE;
 	color: #FAFAFD;
 }
 
-li:hover.song1 {
+:hover.song1 {
 	font-size: 12pt;
 	padding: 5pt;
 	background-color: #A5E7FD;
 	color: #444;
+	cursor: pointer; cursor: hand;
+}
+
+a.songArtist {
+	color: inherit;
+	text-decoration: none;
+}
+
+a:hover.songArtist {
+	color: inherit;
+	text-decoration: underline;
 }
 
 #controlsNShit {
@@ -61,18 +72,19 @@ li:hover.song1 {
 	float: left;
 }
 
-li.song2 {
+.song2 {
 	font-size: 12pt;
 	padding: 5pt;
 	background-color: #5AB7F2;
 	color: #444;
 }
 
-li:hover.song2 {
+:hover.song2 {
 	font-size: 12pt;
 	padding: 5pt;
 	background-color: #A5E7FD;
 	color: #444;
+	cursor: pointer; cursor: hand;
 }
 
 body#body {
@@ -140,3 +152,11 @@ a.general:hover {
 	text-decoration: underline;
 }
 
+.small {
+	font-size: 10pt;
+}
+
+.fakeBullet {
+	float: left;
+	margin-right: 5px;
+}
