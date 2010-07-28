@@ -28,14 +28,14 @@ function Player(tapeId, playerName) {
 				// load and play first song
 				this.songLoaded = 0;
 				niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
-				document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
-				this.isPlaying = true;
+				this.updateNowPlaying(false);
 				return 'loaded';
 			// it's paused
 			} else {
 				// unpause
 				niftyplayer(this.playerName).play();
 				this.isPlaying = true;
+				this.updateNowPlaying(false);
 				return 'play';
 			}
 		// it's playing
@@ -43,6 +43,7 @@ function Player(tapeId, playerName) {
 			// pause
 			niftyplayer(this.playerName).pause();
 			this.isPlaying = false;
+			this.updateNowPlaying(true);
 			return 'pause';
 		}
 		return 'nothing happened';
@@ -54,7 +55,7 @@ function Player(tapeId, playerName) {
 		}
 		this.songLoaded++;
 		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
-		document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
+		this.updateNowPlaying(false);
 	}
 	
 	this.prevSong = function() {
@@ -63,7 +64,7 @@ function Player(tapeId, playerName) {
 		}
 		this.songLoaded--;
 		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
-		document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
+		this.updateNowPlaying(false);
 	}
 	
 	this.finished = function() {
@@ -76,9 +77,20 @@ function Player(tapeId, playerName) {
 	
 	this.playSong = function(index) {
 		this.songLoaded = index;
+		this.isPlaying = true;
 		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
-		document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
+		this.updateNowPlaying(false);
 		return 'loaded';
+	}
+	
+	this.updateNowPlaying = function(paused) {
+		if(paused == true) {
+			document.title = 'tapestapestapes: ' + this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist + ' (paused)';
+			document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist + ' (paused)';
+		} else {
+			document.getElementById('nowPlayingInfo').innerHTML = this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
+			document.title = 'tapestapestapes: ' + this.playlist[this.songLoaded].title + ' by ' + this.playlist[this.songLoaded].artist;
+		}
 	}
 	
 	return this;
