@@ -88,8 +88,10 @@ end
 
 # create song
 post '/new/song' do
-	song=Song.new(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
-	song.save
+	song=Song.create(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
+	uploadData = params[:upload_data][:tempfile]
+	path = File.join(musicDirectory, song.id.to_s() + '.mp3')
+	File.open(path, "wb") { |f| f.write(uploadData.read) }
 	redirect '/'
 end
 
