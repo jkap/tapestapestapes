@@ -1,0 +1,8 @@
+sinatra
+sinatra-reloader
+dm-core
+dm-validations
+dm-migrations
+logger
+haml
+dm-serializer
