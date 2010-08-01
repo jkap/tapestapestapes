@@ -93,6 +93,22 @@ function Player(tapeId, playerName) {
 		}
 	}
 	
+	this.updateTime = function(time) {
+		document.getElementById('nowPlayingTime').innerHTML = '| ' + time;
+	}
+	
+	this.updateLoad = function(load) {
+		var newLoad = load * 100;
+		newLoad = Math.round(newLoad);
+		newLoad = newLoad + '%';
+		if(load != 1) {
+			document.getElementById('nowPlayingLoad').innerHTML = '| ' + newLoad;
+		}
+		else {
+			document.getElementById('nowPlayingLoad').innerHTML = '';
+		}
+	}
+	
 	return this;
 }
 

@@ -22,6 +22,8 @@
 %p
 	%span{:class => 'small'} Now playing:
 	%span#nowPlayingInfo nothing. Pick a song!
+	%span#nowPlayingTime
+	%span#nowPlayingLoad
 %ul#songList
 	- i = 0
 	- @songs.each do |song|
