@@ -40,7 +40,7 @@ class Song
 	property :title,			String
 	property :artist,			String
 	property :created_at,	DateTime
-	property :url,        Text,   :lazy => false, :length => 100
+	property :filename,		String
 	
 	validates_presence_of :title
 	validates_presence_of :artist
@@ -104,9 +104,7 @@ end
 # create song
 post '/new/song' do
 	song=Song.create(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
-	uploadData = params[:upload_data][:tempfile]
-	fileName = 'https://tapestt.s3.amazonaws.com//s3upload/' + params[:file_name]
-	song.url = fileName
+	song.filename = params[:file_name]
 	song.save
 	redirect '/'
 end
