@@ -9,6 +9,7 @@ require 'haml'
 require 'dm-serializer/to_json'
 require 'fileutils'
 require 'aws/s3'
+require "s3upload"
 
 ## Configuration
 configure :development do
@@ -104,9 +105,8 @@ end
 post '/new/song' do
 	song=Song.create(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
 	uploadData = params[:upload_data][:tempfile]
-	fileName = song.id.to_s() + '.mp3'
-	S3Object.store(fileName, uploadData, 'tapestt')
-	song.url = S3Object.url_for(fileName, 'tapestt', :expires => @doomsday)
+	fileName = 'https://tapestt.s3.amazonaws.com//s3upload/' + params[:file_name]
+	song.url = fileName
 	redirect '/'
 end
 
@@ -179,4 +179,9 @@ end
 
 get '/migrate/db' do
   DataMapper.auto_migrate!
+end
+
+get "/s3upload" do
+	up = S3::Upload.new( '17REXN7RZKTZWZHG4PG2', 'BB4WlTT7r89389H1fdGNz0cwV8uswiR3RgNR/pNP', 'tapestt')
+	up.to_xml(params[:key], params[:contentType])
 end
