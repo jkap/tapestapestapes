@@ -180,3 +180,7 @@ get '/view/artist/:artistName' do
 	@pageTitle = titlePrefix + ' - ' + params[:artistName]
 	haml :viewArtist
 end
+
+get '/migrate/db' do
+  DataMapper.auto_migrate!
+end
