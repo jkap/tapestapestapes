@@ -10,6 +10,7 @@ require 'dm-serializer/to_json'
 require 'fileutils'
 require 'aws/s3'
 require "s3upload"
+require "mp3info"
 
 ## Configuration
 configure :development do

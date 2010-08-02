@@ -9,3 +9,4 @@ dm-sqlite-adapter -v 1.0.0
 dm-postgres-adapter -v 1.0.0
 aws-s3 -v 0.6.2
 s3upload -v 0.1.0
+ruby-mp3info -v 0.6.13

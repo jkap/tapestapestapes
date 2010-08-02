@@ -9,7 +9,8 @@
 	prefix: "/s3upload/",
 	required: true,
 	onselect: function(info) {
-	console.log(info.name);
+	for (var i in info)
+	console.log(i);
 	$('[name=file_name]').val(info.name);
 	if(parseInt(info.size) < max_file_size)
 	return true;
