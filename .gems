@@ -6,4 +6,4 @@ dm-migrations -v 1.0.0
 haml -v 3.0.14
 dm-serializer -v 1.0.0
 dm-sqlite-adapter -v 1.0.0
-
+dm-postgres-adapter -v 1.0.0
