@@ -40,7 +40,7 @@ class Song
 	property :title,			String
 	property :artist,			String
 	property :created_at,	DateTime
-	property :url,        String
+	property :url,        Text
 	
 	validates_presence_of :title
 	validates_presence_of :artist
@@ -107,6 +107,7 @@ post '/new/song' do
 	uploadData = params[:upload_data][:tempfile]
 	fileName = 'https://tapestt.s3.amazonaws.com//s3upload/' + params[:file_name]
 	song.url = fileName
+	song.save
 	redirect '/'
 end
 
