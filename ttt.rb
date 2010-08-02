@@ -16,7 +16,7 @@ configure :development do
 end
 
 configure :production do
-	DataMapper.setup(:default, 'sqlite::ttt')
+	DataMapper.setup(:default, DATABASE_URL)
 end
 
 ## Models
