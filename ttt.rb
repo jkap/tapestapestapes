@@ -8,6 +8,7 @@ require 'logger'
 require 'haml'
 require 'dm-serializer/to_json'
 require 'fileutils'
+require 'aws/s3'
 
 ## Configuration
 configure :development do
@@ -51,6 +52,7 @@ class User
 	property :email, 			String, :length => (5..40), :unique => true, :format => :email_address
 	property :uname,			String, :unique => true
 	property :created_at,	DateTime
+	property :url,        String
 	
 	has n, :tapes
 	
@@ -60,6 +62,15 @@ end
 
 DataMapper.finalize
 DataMapper.auto_upgrade!
+
+doomsday = Time.mktime(2100, 1, 18).to_
+
+## Connect to S3
+
+AWS::S3::Base.establish_connection!(
+  :access_key_id      => '17REXN7RZKTZWZHG4PG2'
+  :secret_access_key  => 'BB4WlTT7r89389H1fdGNz0cwV8uswiR3RgNR/pNP'
+)
 
 ## Controller Actions
 
@@ -90,8 +101,9 @@ end
 post '/new/song' do
 	song=Song.create(:title=>params[:title],:artist=>params[:artist],:created_at=>Time.now)
 	uploadData = params[:upload_data][:tempfile]
-	path = File.join(musicDirectory, song.id.to_s() + '.mp3')
-	File.open(path, "wb") { |f| f.write(uploadData.read) }
+	fileName = song.id.to_s() + '.mp3'
+	S3Object.store(fileName, uploadData, 'tapestt')
+	S3Object.url_for(filename, 'tapestt', :expires => doomsday)
 	redirect '/'
 end
 

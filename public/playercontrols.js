@@ -27,7 +27,7 @@ function Player(tapeId, playerName) {
 			if(this.songLoaded == -1) {
 				// load and play first song
 				this.songLoaded = 0;
-				niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+				niftyplayer(this.playerName).loadAndPlay( this.playlist[this.songLoaded].url);
 				this.updateNowPlaying(false);
 				return 'loaded';
 			// it's paused
@@ -54,7 +54,7 @@ function Player(tapeId, playerName) {
 			return 'last song in list';
 		}
 		this.songLoaded++;
-		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+		niftyplayer(this.playerName).loadAndPlay(this.playlist[this.songLoaded].url);
 		this.updateNowPlaying(false);
 	}
 	
@@ -63,7 +63,7 @@ function Player(tapeId, playerName) {
 			return 'first song in list';
 		}
 		this.songLoaded--;
-		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+		niftyplayer(this.playerName).loadAndPlay(this.playlist[this.songLoaded].url);
 		this.updateNowPlaying(false);
 	}
 	
@@ -78,7 +78,7 @@ function Player(tapeId, playerName) {
 	this.playSong = function(index) {
 		this.songLoaded = index;
 		this.isPlaying = true;
-		niftyplayer(this.playerName).loadAndPlay('/static/music/' + this.playlist[this.songLoaded].id.toString() + '.mp3');
+		niftyplayer(this.playerName).loadAndPlay(this.playlist[this.songLoaded].url);
 		this.updateNowPlaying(false);
 		return 'loaded';
 	}
