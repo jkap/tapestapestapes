@@ -14,7 +14,7 @@ require "mp3info"
 
 ## Configuration
 configure :development do
-	DataMapper.setup(:default, 'sqlite::ttt')
+	DataMapper.setup(:default, 'sqlite:ttt.db')
 	DataMapper::Logger.new(STDOUT, :debug)
 end
 
