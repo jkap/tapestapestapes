@@ -39,6 +39,7 @@ class Song
 	property :title,			String
 	property :artist,			String
 	property :created_at,	DateTime
+	property :url,        String
 	
 	validates_presence_of :title
 	validates_presence_of :artist
@@ -52,7 +53,6 @@ class User
 	property :email, 			String, :length => (5..40), :unique => true, :format => :email_address
 	property :uname,			String, :unique => true
 	property :created_at,	DateTime
-	property :url,        String
 	
 	has n, :tapes
 	
@@ -60,10 +60,13 @@ class User
 	validates_presence_of :uname
 end
 
+class S3Object < AWS::S3::S3Object
+end
+
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
-doomsday = Time.mktime(2038, 1, 18).to_s()
+@doomsday = Time.mktime(2038, 1, 18).to_s()
 
 ## Connect to S3
 
@@ -103,7 +106,7 @@ post '/new/song' do
 	uploadData = params[:upload_data][:tempfile]
 	fileName = song.id.to_s() + '.mp3'
 	S3Object.store(fileName, uploadData, 'tapestt')
-	S3Object.url_for(filename, 'tapestt', :expires => doomsday)
+	song.url = S3Object.url_for(fileName, 'tapestt', :expires => @doomsday)
 	redirect '/'
 end
 
@@ -137,7 +140,11 @@ end
 
 get '/view/tape/:id/json' do
 	@tape=Tape.get(params[:id])
-	@tape.songs.to_json
+	@tape.songs.each do |song|
+	  fileName = song.id.to_s() + '.mp3'
+	  song.url = S3Object.url_for(fileName, 'tapestt', :expires => @doomsday)
+  end
+  @tape.songs.to_json
 end
 
 # add song to tape
