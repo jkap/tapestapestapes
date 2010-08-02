@@ -140,10 +140,6 @@ end
 
 get '/view/tape/:id/json' do
 	@tape=Tape.get(params[:id])
-	@tape.songs.each do |song|
-	  fileName = song.id.to_s() + '.mp3'
-	  song.url = S3Object.url_for(fileName, 'tapestt', :expires => @doomsday)
-  end
   @tape.songs.to_json
 end
 
