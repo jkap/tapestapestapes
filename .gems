@@ -1,7 +1,9 @@
-sinatra
-sinatra-reloader
-dm-core
-dm-validations
-dm-migrations
-haml
-dm-serializer
+sinatra -v 1.0
+sinatra-reloader -v 0.5.0
+dm-core -v 1.0.0
+dm-validations -v 1.0.0
+dm-migrations -v 1.0.0
+haml -v 3.0.14
+dm-serializer -v 1.0.0
+dm-sqlite-adapter -v 1.0.0
+
