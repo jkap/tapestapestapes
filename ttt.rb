@@ -40,7 +40,7 @@ class Song
 	property :title,			String
 	property :artist,			String
 	property :created_at,	DateTime
-	property :url,        Text
+	property :url,        Text,   :lazy => false
 	
 	validates_presence_of :title
 	validates_presence_of :artist
