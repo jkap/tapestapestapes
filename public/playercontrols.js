@@ -7,7 +7,7 @@ function Player(tapeId, playerName) {
 	this.playerName = playerName;
 	var playlist = [];
 	$.ajax({
-		url:'http://localhost:4567/view/tape/'+ this.tapeId.toString() +'/json',
+		url:'/view/tape/'+ this.tapeId.toString() +'/json',
 		async: false,
 		dataType: 'json',
 		success: function (json) {
