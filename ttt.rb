@@ -62,20 +62,10 @@ class User
 	validates_presence_of :uname
 end
 
-class S3Object < AWS::S3::S3Object
-end
-
 DataMapper.finalize
 DataMapper.auto_upgrade!
 
 @doomsday = Time.mktime(2038, 1, 18).to_s()
-
-## Connect to S3
-
-AWS::S3::Base.establish_connection!(
-  :access_key_id => '17REXN7RZKTZWZHG4PG2',
-  :secret_access_key => 'BB4WlTT7r89389H1fdGNz0cwV8uswiR3RgNR/pNP'
-)
 
 ## Controller Actions
 
@@ -179,9 +169,4 @@ end
 
 get '/migrate/db' do
   DataMapper.auto_migrate!
-end
-
-get "/s3upload" do
-	up = S3::Upload.new( '17REXN7RZKTZWZHG4PG2', 'BB4WlTT7r89389H1fdGNz0cwV8uswiR3RgNR/pNP', 'tapestt')
-	up.to_xml(params[:key], params[:contentType])
 end
